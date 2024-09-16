@@ -23,23 +23,22 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public CustomerDto findCustomer(@PathVariable Long id) {
-
         return customerService.findCustomer(id);
     }
 
-    @PutMapping("/")
-    public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
+    @PutMapping("/{id}")
+    public CustomerDto updateCustomer(@PathVariable Long id,
+                                      @RequestBody CustomerDto customerDto) {
 
-        return customerService.updateCustomer(customerDto);
+        return customerService.updateCustomer(id,customerDto);
     }
 
-    @DeleteMapping("/")
-    public String deleteCustomer(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
-        return "deleted";
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/")
     public List<CustomerDto> findAll() {
         return customerService.findAll();
     }
