@@ -32,17 +32,17 @@ public class CustomerServiceImpl implements CustomerService{
     public CustomerDto findCustomer(Long id) {
 
         Optional<CustomerEntity> customerOpt = customerRepository.findById(id);
-        if (!customerOpt.isPresent()) return null;
+        if (customerOpt.isEmpty()) return null;
         CustomerEntity customer = customerOpt.get();
         return modelMapper.map(customer,CustomerDto.class);
     }
 
     @Override
-    public CustomerDto updateCustomer(CustomerDto customerDto) {
+    public CustomerDto updateCustomer(Long id, CustomerDto customerDto) {
 
         System.out.println("asd;jfasd");
-        Optional<CustomerEntity> customerOpt = customerRepository.findById(customerDto.getId());
-        if (!customerOpt.isPresent()) return null;
+        Optional<CustomerEntity> customerOpt = customerRepository.findById(id);
+        if (customerOpt.isEmpty()) return null;
         CustomerEntity customer = customerOpt.get();
         customer.setId(customerDto.getId());
         customer.setName(customerDto.getName());
