@@ -9,7 +9,7 @@ public interface CustomerService {
 
     CustomerDto findCustomer(Long id);
 
-    CustomerDto updateCustomer(CustomerDto customerDto);
+    CustomerDto updateCustomer(Long id, CustomerDto customerDto);
 
     void deleteCustomer(Long id);
 
